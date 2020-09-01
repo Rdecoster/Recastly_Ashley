@@ -8,19 +8,23 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
-
+// API DATA
       data: {},
       currentVideo: {}
   }
-
-  this.state.data = exampleVideoData
+console.log(this," this in app.jsx")
+  this.state.data = exampleVideoData;
+  this.state.currentVideo =exampleVideoData[0];
+  this.handleClick = this.handleClick.bind(this);
   }
 
+  handleClick() {
+    console.log('This is THIS', this);
+  }
+
+
 render(){
-  console.log("Hi")
-  console.log(exampleVideoData)
-  console.log(this.state)
+
  return (
       <div>
         <nav className="navbar">
@@ -30,10 +34,10 @@ render(){
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div><h5><em>videoPlayer</em> <VideoPlayer/> </h5></div>
+            <div><h5><em>videoPlayer</em> <VideoPlayer video={this.state.currentVideo}/> </h5></div>
           </div>
           <div className="col-md-5">
-            <div><h5><em>videoList</em> <VideoList data={this.state.data}/> </h5></div>
+            <div><h5><em>videoList</em> <VideoList videos={this.state.data} click={this.handleClick}/> </h5></div>
           </div>
         </div>
       </div>

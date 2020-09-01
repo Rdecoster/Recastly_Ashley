@@ -1,12 +1,12 @@
 import VideoListEntry from "./VideoListEntry.js"
 
-var VideoList = (props) => {
-  var data = props.data;
-  console.log(data, 'the data in video list');
+var VideoList = ({videos},props) => {
+  var data = videos.data;
 
-  const videoEntry = data.map((videoInfo) =>
 
-     <VideoListEntry video = {videoInfo}/>
+  const videoEntry = videos.map((videoInfo) =>
+
+     <VideoListEntry video = {videoInfo} key = {videoInfo.id.videoId} click = {props.click}/>
 
   )
 
