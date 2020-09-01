@@ -1,12 +1,12 @@
 import VideoListEntry from "./VideoListEntry.js"
 
-var VideoList = ({videos},props) => {
+var VideoList = ({videos,click}) => {
   var data = videos.data;
 
 
   const videoEntry = videos.map((videoInfo) =>
 
-     <VideoListEntry video = {videoInfo} key = {videoInfo.id.videoId} click = {props.click}/>
+     <VideoListEntry video = {videoInfo} key = {videoInfo.id.videoId} click = {click}/>
 
   )
 

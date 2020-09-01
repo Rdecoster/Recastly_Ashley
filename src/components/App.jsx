@@ -2,7 +2,9 @@ import Search from './Search.js';
 import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
 import exampleVideoData from '../data/exampleVideoData.js'
+import YOUTUBE_API_KEY from '../config/youtube.js'
 
+import searchYouTube from '../lib/searchYouTube.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -12,14 +14,25 @@ class App extends React.Component {
       data: {},
       currentVideo: {}
   }
-console.log(this," this in app.jsx")
+
   this.state.data = exampleVideoData;
+  console.log(this.state.data)
   this.state.currentVideo =exampleVideoData[0];
   this.handleClick = this.handleClick.bind(this);
+  this.getNewVideos = this.getNewVideos.bind(this)
   }
 
-  handleClick() {
-    console.log('This is THIS', this);
+  handleClick(videoObj) {
+
+    console.log(videoObj, "Our Video object")
+    this.setState({currentVideo : videoObj})
+  }
+
+
+
+  getNewVideos() {
+    console.log("you we got to work get video function")
+     searchYouTube()
   }
 
 
@@ -29,7 +42,7 @@ render(){
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> <Search/> </h5></div>
+            <div><h5><em>search</em> <Search getNewVideos = {this.getNewVideos}/> </h5></div>
           </div>
         </nav>
         <div className="row">
