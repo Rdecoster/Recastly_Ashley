@@ -16,25 +16,39 @@ class App extends React.Component {
   }
 
   this.state.data = exampleVideoData;
-  console.log(this.state.data)
+  console.log(this.state.data, "should run once!")
   this.state.currentVideo =exampleVideoData[0];
   this.handleClick = this.handleClick.bind(this);
-  this.getNewVideos = this.getNewVideos.bind(this)
+  this.getNewVideos = this.getNewVideos.bind(this);
+  this.updateState = this.updateState.bind(this);
+
   }
 
   handleClick(videoObj) {
-
-    console.log(videoObj, "Our Video object")
     this.setState({currentVideo : videoObj})
   }
-
-
-
-  getNewVideos() {
-    console.log("you we got to work get video function")
-     searchYouTube()
+  updateState(items) {
+    console.log("update videos envoked with data :", items)
+    this.setState({
+      currentVideo: items[0],
+      data: items
+    })
   }
 
+
+  getNewVideos(query) {
+    console.log("you we got to work get video function")
+
+
+    searchYouTube(YOUTUBE_API_KEY,`${query}`,5, this.updateState)
+
+  }
+
+
+  componentDidMount() {
+
+  this.getNewVideos(YOUTUBE_API_KEY, 'Anchorman')
+ }
 
 render(){
 
